@@ -1,0 +1,38 @@
+{% load static %}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.min.css">
+</head>
+<body>
+<div id="container" style="height:400px;border:1px solid black;"></div>
+<script>var require = { paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs' } }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/loader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.nls.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.js" charset="utf-8" ></script>
+<script charset="utf-8">
+    var content = {{ content }}
+    monaco.editor.colorizeElement(document.getElementById('container'));
+monaco.editor.create(document.getElementById('container'), {
+  value:content,
+  language: 'python',
+  theme: 'vs-dark',
+  readOnly: true,
+  folding: true,
+
+	fontSize: 20,
+    automaticLayout: true,
+    autoIndent:true,
+    detectIndentation:true,
+    formatOnPaste: true,
+
+});
+console.log(content)
+
+</script>
+</body>
+</html>

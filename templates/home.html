@@ -1,0 +1,22 @@
+{% extends 'base/mainLayout.html' %}
+{% load render_partial %}
+{% load static %}
+{% block content %}
+    <!-- NavBar -->
+    {% include 'toolkit/navbar.html' %}
+    <!-- end-NavBar -->
+    <!-- Main-Content -->
+    <div class="container-fluid">
+    <div class="row mt-1 mb-5">
+    {% include 'toolkit/carousel.html' %}
+    <div id="content" class="card-group">
+        {% block user_code_list %}
+        {% endblock %}
+    </div>
+    </div>
+    </div>
+    <!-- endContent -->
+{#    Footer#}
+    <footer class="fixed-bottom bg-dark mt-2"><h3>footer</h3>
+
+{% endblock %}

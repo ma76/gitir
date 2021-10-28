@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block form %}
+    <div
+            class="col-md-12 bg-primary rounded w-75 align-items-center border-warning" style="border: 3px solid">
+        <h1 class="text-center">
+            Register-Form
+        </h1>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-3">
+                <form method="post" class="rounded" style="border: 3px solid;padding: 2px">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="{{ register_form.user_name.id_for_label }}"
+                               class="form-label">{{ register_form.user_name.label_tag }}</label>
+                        {{ register_form.user_name }}
+                        {% for error in register_form.user_name.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ register_form.email.id_for_label }}"
+                               class="form-label">{{ register_form.email.label_tag }}</label>
+                        {{ register_form.email }}
+                        {% for error in register_form.email.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ register_form.password.id_for_label }}"
+                               class="form-label">{{ register_form.password.label_tag }}</label>
+                        {{ register_form.password }}
+                        {% for error in register_form.password.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ register_form.re_password.id_for_label }}"
+                               class="form-label">{{ register_form.re_password.label_tag }}</label>
+                        {{ register_form.re_password }}
+                        {% for error in register_form.re_password.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn-success">Submit</button>
+                </form>
+            <div class="row">
+            <a href="/login" class="rounded-0 btn btn-secondary">Login</a>
+            <a href="/" class="rounded-0 btn btn-secondary">Home</a>
+        </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block form %}
+    <div
+            class="col-md-12 bg-primary rounded w-50 align-items-center border-warning" style="border: 3px solid">
+        <h1 class="text-center">
+            Upload-File
+        </h1>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-3">
+                <form method="post" enctype="multipart/form-data"  class="rounded" style="border: 3px solid;padding: 3px">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="{{ form.project_name.id_for_label }}"
+                               class="form-label">{{ form.project_name.label_tag }}</label>
+                        {{ form.project_name }}
+                        {% for error in form.project_name.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.repository.id_for_label }}"
+                               class="form-label">{{ form.repository.label_tag }}</label>
+                        {{ form.repository }}
+                        {% for error in form.repository.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                <div class="mb-3">
+                        <label for="{{ form.file.id_for_label }}"
+                               class="form-label">{{ form.file.label_tag }}</label>
+                        {{ form.file }}
+                        {% for error in form.file.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                        <hr>
+                        <button type="submit" class="btn-success">Submit</button>
+                </form>
+            </div>
+            <div class="row">
+                <a href="/" class="rounded-0 btn btn-secondary">Home</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

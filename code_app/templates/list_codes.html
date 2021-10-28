@@ -1,0 +1,65 @@
+{% extends 'base-code.html' %}
+{% load static %}
+{% block user_code_list %}
+    <!-- NavBar -->
+    {% include 'toolkit/navbar.html' %}
+    <!-- end-NavBar -->
+    <!-- Main-Content -->
+    <div class="container-fluid">
+        <div class="row mt-1 mb-5">
+
+            <div id="content" class="card-group">
+                {% for code in object_list %}
+                    <div class="col-md-4 col-sm-6">
+                        <section class="card mb-1 border-warning">
+                            <div class="card-header bg-primary"></div>
+                            <img src="{% static 'img/backcode.jpg' %}" class="cord-img img-fluid">
+                            <div class="card-img-overlay">
+                                <h3 class="card-title text-light">{{ code.project_name }}</h3>
+                                <hr>
+                                <h5 class="card-title text-warning">Repository :
+                                    <spam class="text-danger">{{ code.repository }}</spam>
+                                </h5>
+                                <br>
+                                <h5 class="card-title text-warning">User :
+                                    <spam class="text-danger">{{ code.user.username }}</spam>
+                                </h5>
+                                <div class="card-footer">
+                                    <a href="{{ code.get_absolute_url }}" class="btn btn-primary">Open</a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                {% endfor %}
+            </div>
+            <nav aria-label="...">
+                <ul class="pagination justify-content-center bg-Secondary">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.previous_page_number }}"><spam class="page-link">Previous</spam></a>
+                        </li>
+                    {% endif %}
+                    {% for page in paginator.page_range %}
+                        {% if page == page_obj.number %}
+                            <li class="page-item active"><a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- endContent -->
+    {#    Footer#}
+    <footer class="fixed-bottom bg-dark mt-2"><h3>footer</h3>
+
+
+{% endblock %}
